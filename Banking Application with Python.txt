@@ -1,0 +1,85 @@
+
+class bank:
+    rightpin = 1234
+    pin = int(input("Enter your pin: "))
+    if pin != rightpin:
+        raise ValueError("Invalid Pin!")
+                
+    def __init__(self):
+        self.balance = 100000
+        self.welcome =   '''======================== Welcome to Bank of India ==========================
+        Choose an option :
+        1. Deposit
+        2. Withdraw
+        3. Balance Inquiry
+        4. Balance Transfer
+        5. Exit'''
+        print(self.welcome)
+        print()
+
+class customer(bank):          
+    def deposit(self):
+        self.deposit = int(input("Enter the amount you want to deposit: "))
+        self.balance += self.deposit
+        print("{}rs has been deposited. Your current balance is {}rs".format(self.deposit,self.balance))
+        
+    def withdraw(self):
+        self.amt = int(input("Enter amount you want to withdraw: "))  
+        if self.amt > self.balance:
+            print("Insufficient balance to do this transaction!")
+        else:
+            self.balance -= self.amt
+            print("You have withdrawn {}rs and your current balance is {}rs".format(self.amt,self.balance))
+            
+    def balanceinquiry(self):
+        print("You have {}rs in your account".format(self.balance))
+                
+    def balancetransfer(self):
+        transferaccountnum = int(input("Enter account number to which you want to transfer: "))
+        self.amt = int(input("Enter amount you want to transfer: "))
+        if self.amt > self.balance:
+            print("Insufficient balance to do this transaction!")
+        else:
+            self.balance -= self.amt
+            print("{}rs has been transferred to account number {} & your current balance is {}rs".format(self.amt,transferaccountnum,self.balance))
+           
+a = customer()
+if __name__ == "__main__":
+    while True:
+        print()
+        c = int(input("Enter your choice: "))
+        if c == 1:
+            a.deposit()
+        elif c == 2:
+            a.withdraw()
+        elif c == 3:
+            a.balanceinquiry()
+        elif c == 4:
+            a.balancetransfer()
+        elif c == 5:
+            print("Thankyou for banking with us!")
+            exit()
+        else:
+            print("Invalid Selection")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
